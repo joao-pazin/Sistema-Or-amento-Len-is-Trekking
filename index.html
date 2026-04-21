@@ -361,6 +361,41 @@ function getMk(np,dias){
   const d=Math.min(Math.max(dias,1),13);
   return Math.round((MARKUP_TABLE[p][d]||0.55)*100);
 }
+
+// Tabela de feriados
+const FERIADOS={
+  "2025-02-28":"Carnaval","2025-03-01":"Carnaval","2025-03-02":"Carnaval",
+  "2025-03-03":"Carnaval","2025-03-04":"Carnaval","2025-03-05":"Carnaval","2025-03-06":"Carnaval",
+  "2025-04-18":"Páscoa","2025-04-19":"Páscoa","2025-04-20":"Páscoa",
+  "2025-04-21":"Tiradentes",
+  "2025-05-01":"Dia do Trabalho","2025-05-02":"Feriado Dia do Trabalho",
+  "2025-05-03":"Feriado Dia do Trabalho","2025-05-04":"Feriado Dia do Trabalho",
+  "2025-06-19":"Corpus Christi",
+  "2025-09-07":"Independência","2025-10-12":"Nossa Senhora Aparecida",
+  "2025-11-02":"Finados","2025-11-15":"Proclamação da República","2025-11-20":"Consciência Negra",
+  "2025-12-24":"Véspera de Natal","2025-12-25":"Natal",
+  "2025-12-26":"Semana ano novo","2025-12-27":"Semana ano novo","2025-12-28":"Semana ano novo",
+  "2025-12-29":"Semana ano novo","2025-12-30":"Semana ano novo",
+  "2025-12-31":"Véspera de ano novo","2026-01-01":"Ano novo","2026-01-02":"Semana ano novo",
+  "2026-01-30":"Senhor dos Passos","2026-01-31":"Senhor dos Passos",
+  "2026-02-01":"Senhor dos Passos","2026-02-02":"Senhor dos Passos",
+  "2026-02-13":"Carnaval","2026-02-14":"Carnaval","2026-02-15":"Carnaval",
+  "2026-02-16":"Carnaval","2026-02-17":"Carnaval","2026-02-18":"Carnaval",
+  "2026-04-02":"Páscoa","2026-04-03":"Páscoa","2026-04-04":"Páscoa","2026-04-05":"Páscoa",
+  "2026-04-17":"Tiradentes","2026-04-18":"Tiradentes","2026-04-19":"Tiradentes",
+  "2026-04-20":"Tiradentes","2026-04-21":"Tiradentes","2026-04-22":"Tiradentes",
+  "2026-04-30":"Dia do Trabalho","2026-05-01":"Dia do Trabalho",
+  "2026-05-02":"Dia do Trabalho","2026-05-03":"Dia do Trabalho"
+};
+function isFeriado(dateStr){return FERIADOS[dateStr]||null;}
+function getFeriadoRoteiro(di,df){
+  if(!di)return null;
+  // checa data início e data fim
+  const datas=[di];
+  if(df&&df!==di)datas.push(df);
+  for(const d of datas){const f=isFeriado(d);if(f)return f;}
+  return null;
+}
 document.getElementById('hdr-img').src=LOGO;
 
 // NAVEGAÇÃO
@@ -446,14 +481,19 @@ function calc(){
     let vh=h.g||0;d.qts.forEach(q=>{vh+=(q.t==='single'?h.s:q.t==='casal'?h.c:h.t||0)*q.q});
     cp+=vp;ct+=vt;ch+=vh;det.push({i:i+1,r,h,d,vp,vt,vh,sub:vp+vt+vh,semPreco});
   });
+  // Feriado: checar data início e fim
+  const di=document.getElementById('di')?.value||'';
+  const df=document.getElementById('df')?.value||'';
+  const feriadoNome=getFeriadoRoteiro(di,df);
+  const chFinal=feriadoNome?ch*1.2:ch;
   const mk=getMk(np,E.dias.length);
-  const tot=cp+ct+ch,com=tot*(1+mk/100),ppp=np>0?Math.ceil(com/np/100)*100:0;
+  const tot=cp+ct+chFinal,com=tot*(1+mk/100),ppp=np>0?Math.ceil(com/np/100)*100:0;
   const venda=ppp*np;
   const lucro=venda-tot;
-  const imposto=0.16*(venda-ch-ct-cp*0.5);
+  const imposto=0.16*(venda-chFinal-ct-cp*0.5);
   const lucroLiq=venda-tot-imposto;
   const margem=venda>0?lucroLiq/venda:0;
-  return{cp,ct,ch,tot,com,ppp,np,mk,venda,lucro,imposto,lucroLiq,margem,det,avisos};
+  return{cp,ct,ch:chFinal,chBase:ch,tot,com,ppp,np,mk,venda,lucro,imposto,lucroLiq,margem,det,avisos,feriadoNome};
 }
 
 function R(v){return'R$ '+Math.round(v).toLocaleString('pt-BR')}
@@ -467,11 +507,17 @@ function bk(){
       ${c.avisos.map(a=>`<div style="font-size:.8rem;color:#f0c0a0;padding:2px 0">${a}</div>`).join('')}
       <div style="font-size:.75rem;color:#a07060;margin-top:7px">O preço por pessoa está incorreto. Verifique o número de pessoas ou troque o passeio.</div>
     </div>`:'';
+  const feriadoHtml=c.feriadoNome?`
+    <div style="background:#1a2a1a;border:1.5px solid #4ade80;border-radius:7px;padding:10px 13px;margin-bottom:12px">
+      <div style="font-size:.72rem;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">&#127881; Período de Feriado — ${c.feriadoNome}</div>
+      <div style="font-size:.8rem;color:#a0d0a0">+20% aplicado no custo de hospedagem.</div>
+    </div>`:'';
   document.getElementById('bklin').innerHTML=`
+    ${feriadoHtml}
     ${alertaHtml}
     <div class="bk-l"><span>Passeios (grupo)</span><span>${R(c.cp)}</span></div>
     <div class="bk-l"><span>Taxa de entrada (${np}pax)</span><span>${R(c.ct)}</span></div>
-    <div class="bk-l"><span>Hospedagem</span><span>${R(c.ch)}</span></div>
+    <div class="bk-l"><span>Hospedagem${c.feriadoNome?' <span style="font-size:.7rem;color:#4ade80">(+20% feriado)</span>':''}</span><span>${R(c.ch)}</span></div>
     <div class="bk-l bk-tot"><span>Custo total</span><span>${R(c.tot)}</span></div>
     <div class="bk-l bk-mk"><span>Markup ${c.mk}%</span><span>+ ${R(c.tot*c.mk/100)}</span></div>
     <div class="bk-l bk-fin"><span>Preço por pessoa</span><span${c.avisos.length?' style="color:#f87171"':''}>${R(c.ppp)}${c.avisos.length?' &#9888;':''}</span></div>
