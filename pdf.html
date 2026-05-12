@@ -165,7 +165,7 @@ else{
                        : 'Para reserva, é necessário o pagamento de <strong>30%</strong> do valor total.<br>O saldo restante deverá ser pago até <strong>10 dias antes</strong> do início da viagem.<br><br>Aceitamos: PIX · Transferência · Cartão em até 6x (+5%) · Parcelamento no PIX',
     condicoesGerais: EN ? 'GENERAL CONDITIONS'   : 'CONDIÇÕES GERAIS',
     infoImp:        EN ? 'Important Information' : 'Informações Importantes',
-    inclusoTag:     EN ? 'INCLUDED / NOT INCLUDED' : 'INCLUSO / NÃO INCLUSO',
+    inclusoTag:     EN ? 'INCLUDED' : 'INCLUSO',
     inclusoItems:   EN ? ['Experienced guide','ROCA Adventure Insurance','Entrance fees to attractions', D.car==='agencia' ? 'Transport in agency vehicle' : "Transport in client's own vehicle"]
                        : ['Guia experiente','Seguro Aventura ROCA','Taxa de entrada nos atrativos', D.car==='agencia' ? 'Transporte em carro da agência' : 'Transporte em carro próprio do viajante'],
     hospedagemItem: EN ? 'Accommodation as per itinerary' : 'Hospedagem conforme roteiro',
@@ -198,7 +198,8 @@ else{
   <div class="pdf-s">
     <div class="pdf-tag">${T.descricaoRoteiro}</div>
     <table class="pt"><thead><tr><th>${T.colData}</th><th>${T.colPasseio}</th><th>${T.colPousada}</th><th>${T.colCidade}</th></tr></thead>
-    <tbody>${det.map(d=>`<tr><td>${fmtD(D.di,d.i-1)}</td><td>${EN?d.r.nomeEn:d.r.nome}</td><td>${d.h.nome}</td><td>${d.h.local}</td></tr>`).join('')}</tbody></table>
+    <tbody>${det.map(d=>`<tr><td>${fmtD(D.di,d.i-1)}</td><td>${EN?d.r.nomeEn:d.r.nome}</td><td>${d.h.id!==20?d.h.nome+' *':d.h.nome}</td><td>${d.h.local}</td></tr>`).join('')}</tbody></table>
+    <div style="font-size:8.5pt;color:#888;margin-top:6px;font-style:italic">${EN?'* Accommodation as listed above or similar (same category).':'* Pousada conforme tabela acima ou similar (mesma categoria).'}</div>
   </div>
   <div class="pdf-s">
     <div class="pdf-tag">${T.precoTag}</div>
