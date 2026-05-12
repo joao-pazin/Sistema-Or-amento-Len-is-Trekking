@@ -564,10 +564,11 @@ function upd(){
       <tbody>${c.det.map(d=>`<tr>
         <td>${fmtD(di,d.i-1)}</td>
         <td>${d.r.nome}</td>
-        <td>${d.h.nome}</td>
+        <td>${d.h.id!==20?d.h.nome+' *':d.h.nome}</td>
         <td>${d.h.local}</td>
       </tr>`).join('')}</tbody>
-    </table>`
+    </table>
+    <div style="font-size:8.5pt;color:#888;margin-top:6px;font-style:italic">* Pousada conforme tabela acima ou similar (mesma categoria).</div>`
     :'<div style="color:#aaa;font-size:9.5pt;font-style:italic;padding:4px 0">Adicione os dias do roteiro...</div>'}
   </div>
 
