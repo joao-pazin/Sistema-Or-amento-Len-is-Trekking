@@ -30,7 +30,7 @@ const ROT = [
 ];
 
 const HOSP = [
-  {id:1,nomeEn:"Mosquito Waterfall, Devil's Pool & Pai Inácio Hill",nome:"Pousada Pouso da Trilha",local:"Lençóis",s:282,c:332,t:298,g:0},
+  {id:1,nomeEn:"Mosquito Waterfall, Devil's Pool & Pai Inácio Hill",nome:"Pousada Pouso da Trilha",local:"Lençóis",s:282,c:332,t:398,g:0},
   {id:2,nomeEn:"Lapa Doce Cave + Pratinha Farm",nome:"Hotel Canto das Águas",local:"Lençóis",s:0,c:0,t:1751,g:0},
   {id:3,nomeEn:"Buracão + Fumacinha + Pools",nome:"Pousada Recanto dos Mineiros",local:"Lençóis",s:160,c:200,t:270,g:0},
   {id:4,nomeEn:"Muritiba Park (no car needed)",nome:"Pousada Kabana de Pedra",local:"Ibicoara",s:135,c:200,t:330,g:45},
