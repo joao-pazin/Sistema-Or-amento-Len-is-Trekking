@@ -39,7 +39,7 @@ const HOSP = [
   {id:5,nomeEn:"Marimbus Wetlands + Roncador River",nome:"Agnaldo",local:"Pati",s:200,c:400,t:600,g:0},
   {id:6,nomeEn:"Fumaça Waterfall + Riachinho",nome:"Casa de Dona Bia",local:"Ibicoara",s:170,c:340,t:510,g:0},
   {id:7,nomeEn:"Poço Azul & Poço Encantado",nome:"Pousada Mucugê",local:"Mucugê",s:180,c:290,t:360,g:100},
-  {id:8,nomeEn:"Sossego Waterfall + Ribeirão do Meio (no car needed)",nome:"Pousada Monte Azul",local:"Mucugê",s:0,c:330,t:0,g:100},
+  {id:8,nomeEn:"Sossego Waterfall + Ribeirão do Meio (no car needed)",nome:"Pousada Monte Azul",local:"Mucugê",s:279,c:364,t:445,g:100},
   {id:9,nomeEn:"Vale do Pati 3-Day Trek",nome:"Igrejinha",local:"Pati",s:200,c:400,t:600,g:0},
   {id:10,nomeEn:"Buracão Waterfall",nome:"Zé Preto",local:"Pati",s:230,c:460,t:690,g:0},
   {id:11,nomeEn:"Fumacinha Waterfall",nome:"Dona Linda",local:"Pati",s:215,c:430,t:645,g:0},
