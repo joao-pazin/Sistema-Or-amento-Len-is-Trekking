@@ -51,5 +51,5 @@ const HOSP = [
   {id:18,nomeEn:"UVVA Winery",nome:"Hotel de Lençóis",local:"Lençóis",s:490,c:600,t:987,g:0},
   {id:19,nomeEn:"Lapa Doce, Vale das Piscinas & Camelo Lookout",nome:"Refúgio na Serra",local:"Mucugê",s:1580,c:1580,t:0,g:0},
   {id:20,nomeEn:"Horseback Riding",nome:"— Sem hospedagem —",local:"",s:0,c:0,t:0,g:0},
-  {id:21,nomeEn:"Igatu Inn",nome:"Pousada de Igatu",local:"Igatu",s:200,c:350,t:600,g:0}
+  {id:21,nomeEn:"Igatu Inn",nome:"Pousada Pedras de de Igatu",local:"Igatu",s:352,c:437,t:592,g:0}
 ];
