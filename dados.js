@@ -55,7 +55,7 @@ const HOSP = [
   {id:15,nomeEn:"Conceição dos Gatos & Lagoa dos Patos",nome:"Pousada do Jairo",local:"Ibicoara",s:180,c:250,t:345,g:0},
   {id:16,nomeEn:"Rodas & Rio Preto",nome:"Prefeitura",local:"Pati",s:230,c:460,t:690,g:0},
   {id:17,nomeEn:"Torrinha Cave, Pratinha Farm & Camelo Lookout",nome:"Pousada To em Casa",local:"Lençóis",s:175,c:210,t:295,g:0},
-  {id:18,nomeEn:"UVVA Winery",nome:"Hotel de Lençóis",local:"Lençóis",s:490,c:600,t:1118,g:0},
+  {id:18,nomeEn:"UVVA Winery",nome:"Hotel de Lençóis",local:"Lençóis",s:490,c:600,t:832,g:0},
   {id:19,nomeEn:"Lapa Doce, Vale das Piscinas & Camelo Lookout",nome:"Refúgio na Serra",local:"Mucugê",s:1580,c:1580,t:0,g:0},
   {id:20,nomeEn:"Horseback Riding",nome:"— Sem hospedagem —",local:"",s:0,c:0,t:0,g:0},
   {id:21,nomeEn:"Igatu Inn",nome:"Pousada Pedras de Igatu",local:"Igatu",s:352,c:437,t:592,g:0},
